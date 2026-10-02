@@ -30,16 +30,23 @@ styles = {
 citations = {'ostep':'1','cornell':'2','osc':'3','sklearn':'4','lykouris':'5'}
 
 def clean(text):
+    urls = []
+    def keep_url(match):
+        urls.append(match[1])
+        return f'URLPLACEHOLDER{len(urls)-1}END'
+    text = re.sub(r'\\url\{([^}]+)\}', keep_url, text)
     text = re.sub(r'\s+',' ',text.strip())
     text = re.sub(r'\\cite\{([^}]+)\}',lambda m:'['+', '.join(citations[k.strip()] for k in m[1].split(','))+']',text)
     text = re.sub(r'Table~\\ref\{[^}]+\}','Table 1',text)
     text = re.sub(r'Figure~\\ref\{[^}]+\}','Figure 1',text)
-    text = re.sub(r'\\url\{([^}]+)\}',lambda m:'URLLINKSTART'+m[1]+'URLLINKEND',text)
     text = re.sub(r'\\(?:texttt|emph)\{([^}]+)\}',r'\1',text)
     text = text.replace(r'\times',' x ').replace('$','').replace(r'\%','%').replace(r'\_','_')
     text = text.replace('---',' - ').replace('--','-').replace('~',' ')
     text = html.escape(text).replace('&lt;br/&gt;','<br/>')
-    text = re.sub(r'URLLINKSTART(.*?)URLLINKEND',lambda m:f'<link href="{m[1]}" color="black">{m[1]}</link>',text)
+    def restore_url(match):
+        url = html.escape(urls[int(match[1])], quote=True)
+        return f'<link href="{url}" color="black">{url}</link>'
+    text = re.sub(r'URLPLACEHOLDER(\d+)END', restore_url, text)
     return text
 
 def p(text, style='body'):
