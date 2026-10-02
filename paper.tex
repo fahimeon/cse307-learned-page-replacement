@@ -79,12 +79,6 @@ faults is important \cite{ostep,osc}.
 The program simulates page replacement on Windows using Python. It does not
 measure real Windows page faults, disk activity, or VMware performance.
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{results/phase_hits.png}
-\caption{Hit ratios before and after the change with 16 frames. The small vertical lines show variation between trials.}
-\end{figure}
-
 \newpage
 \section{Implementation of the Four Policies}
 \subsection{FIFO, LRU, and Optimal}
@@ -204,30 +198,28 @@ Learned & 2264 & 24.5 & 898 & 70.1 \\ \hline
 
 \newpage
 \section{Discussion of Results}
-\subsection{Before the change: locality helps}
-Before the change, pages 0--7 are used repeatedly. LRU and the learned policy both
-keep many of these useful pages in frames and achieve about 91\% hits. FIFO gives
-about 84\% hits because its rule considers arrival order rather than recent use.
-This difference is consistent with temporal locality:
-a page used recently is often used again soon \cite{ostep}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{results/phase_hits.png}
+\caption{Hit ratios before and after the change with 16 frames. The small vertical lines show variation between trials.}
+\end{figure}
 
-The learned policy and LRU are almost equal before the change. Their small
-difference does not show a clear advantage for learning. Optimal reaches about
-94\% because it can check future requests before selecting a replacement.
+\subsection{Before the change: locality helps}
+LRU and the learned policy keep frequently used pages in frames and achieve
+about 91\% hits. FIFO gives about 84\% because it uses arrival order rather than
+recent use. This illustrates temporal locality \cite{ostep}. Learning provides
+no clear advantage over LRU here. Optimal reaches about 94\% using future knowledge.
 
 \subsection{After the change: random and bursty accesses differ}
-With random accesses, recent use no longer tells the policies which page will
-be requested next. Sixteen frames hold only one quarter of the 64 possible pages,
-so FIFO, LRU, and the learned policy achieve roughly 25\% hits. Optimal performs
-better because it can see the future. This is why it is useful as a comparison,
-but is not a realistic replacement rule for an unknown future string.
+With random accesses, history does not predict the next page. Sixteen frames hold
+one quarter of the possible pages, so FIFO, LRU, and the learned policy achieve
+roughly 25\% hits. Optimal performs better using future knowledge.
 
-With bursty accesses, a small working set still exists, but it moves between
-different groups of pages. LRU follows recent use and achieves about 79\% hits.
-The learned policy achieves about 70\%. It was trained on a pattern where the
-same group stays useful, so it does not follow changing groups as effectively.
-The old access counts can also favor pages that are no longer useful. This is a
-reasonable explanation of the result, rather than a separate test of each feature.
+With bursty accesses, the working set moves between groups of pages. LRU follows
+recent use and achieves about 79\% hits; the learned policy achieves about 70\%.
+Training on a stable group and retaining old access counts may explain why the
+model follows changing groups less effectively. This explanation was not tested
+separately for each feature.
 
 At 16 frames, the learned policy shows the largest hit-ratio drop in both tested
 changes. In the bursty case, its drop is about 21 percentage points, compared
