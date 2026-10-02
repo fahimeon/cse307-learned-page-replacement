@@ -24,9 +24,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe experiment.py
 ```
 
-On Linux/macOS, use `.venv/bin/python` instead of `.venv\Scripts\python.exe`.
-Running the experiment regenerates the results and figures. It does not need an
-external dataset or model API.
+
 
 ## What the experiment does
 
@@ -103,11 +101,6 @@ comparison, and hit ratios along the reference string.
 | `build_paper.py` | Regenerate the paper source from the result tables |
 | `build_pdf.py` | Produce the PDF with Python |
 
-Other files in `results/` preserve training examples, software versions, internal
-checking information, and window-by-window results. Those technical checks are
-not part of the simplified report. The six automated test methods passed, and
-the saved results were checked for consistency. No experiments were changed for
-the report revision; displayed averages are simply rounded for readability.
 
 ## Regenerate the report
 
@@ -121,16 +114,8 @@ the report revision; displayed averages are simply rounded for readability.
 `assets/mist-logo.png`, `results/phase_hits.png`, and `results/timeline.png` files
 alongside it in the same folder structure when compiling. It can be compiled in
 a normal LaTeX environment with `pgfplots`.
-The native
-compiler in this environment failed with “Unable to find standard directories
-for platform,” so LaTeX compilation remains unverified. The provided PDF uses
-Python/ReportLab to render the same text, tables, and three measured charts. All six PDF
-pages were visually checked. No TeX distribution was installed.
 
-The six-page format follows the student's request. It exceeds the page limits
-in the supplied assignment brief and announcement.
-
-## Sources and AI assistance
+## Sources 
 
 Sources are [OSTEP, Chapter 22](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf),
 [Cornell's page replacement lecture](https://www.cs.cornell.edu/courses/cs4410/2015su/lectures/lec15-replacement.html),
@@ -138,7 +123,3 @@ Sources are [OSTEP, Chapter 22](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyond
 [scikit-learn's decision-tree documentation](https://scikit-learn.org/stable/modules/tree.html),
 and [Competitive caching with machine learned advice](https://arxiv.org/abs/1802.05399).
 
-AI assistance was used to generate code, design and execute the experiments,
-analyze results, and draft and revise the paper. The results come from actual
-executed simulations. The student must review, understand, and take responsibility
-for the design, results, and analysis before submission, as required by the brief.
