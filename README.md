@@ -81,11 +81,13 @@ for the full string, rather than a practical online replacement rule.
 
 [Read the revised six-page paper](output/pdf/CSE307_Track1_Term_Paper.pdf).
 It has **one separate cover page and five pages of content and references**.
-The cover includes the official MIST logo. Tables have white cells and black
+The cover includes the MIST logo. Tables have white cells and black
 borders. The abstract gives a high-level overview without numerical results.
 Explanations focus on paging, locality, working sets, and replacement policies.
 There are five external references;
 the decision tree is explained briefly because Track 1 requires it.
+All three result charts appear in the paper: before/after hit ratios, frame-count
+comparison, and hit ratios along the reference string.
 
 | File | Purpose |
 |---|---|
@@ -97,7 +99,7 @@ the decision tree is explained briefly because Track 1 requires it.
 | `results/access_results.csv.gz` | Detailed hit/fault records |
 | `results/tree.txt` | Readable rules learned by the tree |
 | `paper.tex` | Editable LaTeX paper |
-| `assets/mist-logo.png` | Official MIST logo used on the cover |
+| `assets/mist-logo.png` | MIST logo used on the cover |
 | `build_paper.py` | Regenerate the paper source from the result tables |
 | `build_pdf.py` | Produce the PDF with Python |
 
@@ -116,12 +118,13 @@ the report revision; displayed averages are simply rounded for readability.
 ```
 
 `paper.tex` contains its tables, chart coordinates, and references. Keep the
-`assets/mist-logo.png` file alongside it in the same folder structure when
-compiling. It can be compiled in a normal LaTeX environment with `pgfplots`.
+`assets/mist-logo.png`, `results/phase_hits.png`, and `results/timeline.png` files
+alongside it in the same folder structure when compiling. It can be compiled in
+a normal LaTeX environment with `pgfplots`.
 The native
 compiler in this environment failed with “Unable to find standard directories
 for platform,” so LaTeX compilation remains unverified. The provided PDF uses
-Python/ReportLab to render the same text, tables, and measured chart. All six PDF
+Python/ReportLab to render the same text, tables, and three measured charts. All six PDF
 pages were visually checked. No TeX distribution was installed.
 
 The six-page format follows the student's request. It exceeds the page limits
@@ -134,11 +137,6 @@ Sources are [OSTEP, Chapter 22](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyond
 [Operating System Concepts, 10th edition](https://www.os-book.com/OS10/),
 [scikit-learn's decision-tree documentation](https://scikit-learn.org/stable/modules/tree.html),
 and [Competitive caching with machine learned advice](https://arxiv.org/abs/1802.05399).
-
-The cover logo is the original PNG used by the [official MIST website](https://mist.ac.bd/),
-downloaded from `https://mist.ac.bd/assets/30-q2kX7pZF.png`. Its proportions are
-preserved. Logo provenance is documented here rather than included among the
-paper's academic references.
 
 AI assistance was used to generate code, design and execute the experiments,
 analyze results, and draft and revise the paper. The results come from actual

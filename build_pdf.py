@@ -82,6 +82,7 @@ assert len(pages)==6
 story=[]
 section_number=0
 table_number=0
+figure_number=0
 for page_index,page in enumerate(pages):
     if page_index:
         story.append(PageBreak())
@@ -133,8 +134,16 @@ for page_index,page in enumerate(pages):
             story.append(p(f'Table {table_number}. '+caption,'small'))
             story.append(source_table(token));story.append(Spacer(1,8))
         elif token.startswith(r'\begin{figure}'):
-            story.append(Image(str(ROOT/'results'/'capacity.png'),width=477,height=172))
-            story.append(p('Figure 1. Average hit ratios after the change at four frame counts.','small'))
+            figure_number+=1
+            external=re.search(r'\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}',token)
+            chart=ROOT/external[1] if external else ROOT/'results'/'capacity.png'
+            chart_image=Image(str(chart))
+            ratio=chart_image.imageHeight/chart_image.imageWidth
+            chart_image.drawWidth=477
+            chart_image.drawHeight=477*ratio
+            caption=re.search(r'\\caption\{([^}]+)\}',token)[1]
+            story.append(chart_image)
+            story.append(p(f'Figure {figure_number}. '+caption,'small'))
         elif token.startswith(r'\begin{thebibliography}'):
             refs=re.split(r'\\bibitem\{([^}]+)\}',token)[1:]
             for i in range(0,len(refs),2):

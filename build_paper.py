@@ -114,6 +114,12 @@ faults is important \cite{ostep,osc}.
 The program simulates page replacement on Windows using Python. It does not
 measure real Windows page faults, disk activity, or VMware performance.
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{results/phase_hits.png}
+\caption{Hit ratios before and after the change with 16 frames. The small vertical lines show variation between trials.}
+\end{figure}
+
 \newpage
 \section{Implementation of the Four Policies}
 \subsection{FIFO, LRU, and Optimal}
@@ -292,6 +298,12 @@ The experiment can be repeated using \texttt{python experiment.py}. AI assistanc
 was used for implementation, running the experiments, and drafting the report.
 The numbers come from executed simulations. The student should review and
 understand the work before submission.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{results/timeline.png}
+\caption{Hit ratios along the reference string with 16 frames. The dashed line marks where the access pattern changes.}
+\end{figure}
 
 \subsection{References}
 The following sources support the memory-management explanations, classical
