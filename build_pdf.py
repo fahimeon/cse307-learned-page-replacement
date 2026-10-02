@@ -1,7 +1,7 @@
 """Render the same paper content with ReportLab when native TeX is unavailable.
 
 This is a Python-rendered PDF, not a claim of a successful LaTeX compilation.
-The standalone paper.tex remains available for a TeX-capable editor.
+The paper.tex source and logo asset remain available for a TeX-capable editor.
 """
 import html
 import re
@@ -26,7 +26,7 @@ styles = {
     'small': ParagraphStyle('small',fontName='Times-Roman',fontSize=9.5,leading=12,spaceAfter=3),
     'ref': ParagraphStyle('ref',fontName='Times-Roman',fontSize=9.5,leading=12,spaceAfter=7),
 }
-citations = {'part2':'1','part3':'2','ostep':'3','cornell':'4','osc':'5','sklearn':'6','lykouris':'7'}
+citations = {'ostep':'1','cornell':'2','osc':'3','sklearn':'4','lykouris':'5'}
 
 def clean(text):
     text = re.sub(r'\s+',' ',text.strip())
@@ -85,14 +85,19 @@ for page_index,page in enumerate(pages):
     if page_index:
         story.append(PageBreak())
     else:
-        story.extend([Spacer(1,42),p('MIST','title'),
+        logo=Image(str(ROOT/'assets'/'mist-logo.png'))
+        logo_ratio=logo.imageHeight/logo.imageWidth
+        logo.drawWidth=84
+        logo.drawHeight=84*logo_ratio
+        story.extend([Spacer(1,15),logo,
+                      Spacer(1,10),p('MIST','title'),
                       p('Department of Computer Science and Engineering','center'),Spacer(1,42),
                       p('CSE-307: Operating Systems','subtitle'),
                       p('TERM PAPER - PART B, TRACK 1','center'),Spacer(1,40),
                       p('Page Replacement under a<br/>Changing Access Pattern','title'),
                       p('A Comparison of FIFO, LRU, Optimal,<br/>and a Simple Learned Policy','subtitle'),
                       Spacer(1,36),make_table([
-                          ['Submitted by','Fahim Azmul Hasan'],['Student ID','2024-14014'],
+                          ['Submitted by','Fahim Azmul Hasan'],['Student ID','202414014'],
                           ['Section','A'],['Level and term','Level 3, Term 1'],
                           ['Submitted to','Lecturer Khaled Hasan Irfan'],
                           ['Submission date','3 October 2026']], [120,300])])

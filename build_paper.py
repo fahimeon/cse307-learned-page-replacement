@@ -35,7 +35,7 @@ for scenario in ['random','bursty']:
 
 paper=r'''\documentclass[11pt,a4paper]{article}
 \usepackage[margin=0.85in]{geometry}
-\usepackage{amsmath,array,hyperref,pgfplots}
+\usepackage{amsmath,array,hyperref,pgfplots,graphicx}
 \pgfplotsset{compat=1.18}
 \hypersetup{colorlinks=true,urlcolor=black,citecolor=black,linkcolor=black}
 \setlength{\parindent}{0pt}
@@ -47,6 +47,7 @@ paper=r'''\documentclass[11pt,a4paper]{article}
 \thispagestyle{empty}
 \begin{center}
 \vspace*{1cm}
+\includegraphics[width=2.6cm]{assets/mist-logo.png}\\[10pt]
 {\Large\bfseries MIST}\\[5pt]
 Department of Computer Science and Engineering\\[1.2cm]
 {\large CSE-307: Operating Systems}\\[6pt]
@@ -55,7 +56,7 @@ Department of Computer Science and Engineering\\[1.2cm]
 {\large A Comparison of FIFO, LRU, Optimal, and a Simple Learned Policy}\\[1.5cm]
 \begin{tabular}{|p{3cm}|p{9cm}|}\hline
 Submitted by & Fahim Azmul Hasan \\ \hline
-Student ID & 2024-14014 \\ \hline
+Student ID & 202414014 \\ \hline
 Section & A \\ \hline
 Level and term & Level 3, Term 1 \\ \hline
 Submitted to & Lecturer Khaled Hasan Irfan \\ \hline
@@ -66,31 +67,30 @@ Submission date & 3 October 2026 \\ \hline
 \newpage
 \setcounter{page}{1}
 \begin{abstract}
-This paper compares four page replacement policies using a Python simulation:
-FIFO, LRU, Optimal, and a simple learned policy. The same page-reference strings
-are used for every policy. In the first half, a small group of pages is accessed
-repeatedly. In the second half, accesses become either random or concentrated
-in changing groups of pages. Page faults and hit ratios are measured before and
-after this change. With 16 frames, LRU and the learned policy both achieve about
-91\% hits before the change. After the change to random accesses, both fall to
-about 25\%. With changing groups of frequently used pages, LRU achieves about
-79\%, while the learned policy achieves about 70\%. The results show why locality
-and enough frames matter, and why a policy learned from one pattern may perform
-poorly when that pattern changes.
+Page replacement policies decide which page to remove when memory is full and
+a requested page is missing. This paper uses a Python simulation to compare
+FIFO, LRU, Optimal, and a simple learned policy under a changing access pattern.
+Each policy receives the same reference strings, allowing a fair comparison.
+The study examines page faults and hit ratios as repeated accesses change to
+random accesses or changing groups of frequently used pages. It explores how
+locality and the number of available frames affect replacement decisions, and
+whether a policy learned from one pattern remains useful when that pattern
+changes. The discussion connects the observed behavior to familiar memory
+management concepts and explains the limits of the learned approach.
 \end{abstract}
 
-\section{Introduction and Course Background}
+\section{Introduction and Background}
 \subsection{Pages, frames, and page faults}
-The Part 2 lecture explains that paging divides a process into equal-size pages
+Paging divides a process into equal-size pages
 and physical memory into equal-size frames. A page fits into one frame. Virtual
 memory allows some pages to remain outside RAM until they are needed
-\cite{part2}. This is the background for the present experiment.
+\cite{osc}. This is the background for the present experiment.
 
 If a requested page is already in a frame, the access is a hit. If it is absent,
 the access causes a page fault. When a free frame exists, the page can be loaded
 without replacing another page. When all available frames are occupied, the OS
-must choose a page to remove. The Part 3 lecture introduces FIFO, LRU, and Optimal
-as different ways of making that choice \cite{part3}.
+must choose a page to remove. FIFO, LRU, and Optimal
+are different ways of making that choice \cite{ostep}.
 
 \begin{center}
 \begin{tabular}{|p{3cm}|p{10cm}|}\hline
@@ -106,8 +106,8 @@ Working set & The group of pages that a program is actively using at a particula
 \subsection{Purpose of the study}
 The main question is simple: what happens to page faults when the access pattern
 changes? A second question is whether a small learned policy can make better
-replacement decisions than FIFO or LRU. The experiment uses the class concepts
-of locality, working sets, and hit and fault ratios \cite{part2,part3}.
+replacement decisions than FIFO or LRU. The experiment uses the concepts
+of locality, working sets, and hit and fault ratios \cite{osc,ostep}.
 Standard memory-management texts also explain why avoiding unnecessary page
 faults is important \cite{ostep,osc}.
 
@@ -120,7 +120,7 @@ measure real Windows page faults, disk activity, or VMware performance.
 The simulator starts with empty frames. Each page number in the reference string
 is processed in order. On a hit, no page is loaded. On a fault, the page is loaded
 into a free frame if one exists. Otherwise, the selected policy chooses a page to
-replace. These steps follow the replacement process taught in Part 3 \cite{part3}.
+replace. These steps follow the standard page replacement process \cite{ostep}.
 
 \begin{center}
 \begin{tabular}{|p{2cm}|p{10.8cm}|}\hline
@@ -135,7 +135,7 @@ FIFO is easy to understand, but it may remove a page that is still used often.
 LRU uses recent access history. Optimal is included as a comparison because it
 has the lowest total fault count for the complete reference string. It needs
 future knowledge, so it cannot be used in the same way in a real running program
-\cite{part3,cornell}. Its future knowledge includes both halves of the string.
+\cite{cornell}. Its future knowledge includes both halves of the string.
 
 \subsection{The simple learned policy}
 The Track 1 brief requires a learned component. This study uses a decision tree:
@@ -162,9 +162,9 @@ using learned predictions to help caching decisions \cite{lykouris}; this paper
 uses only a small classroom example of that idea.
 
 \subsection{Basic correctness checks}
-The program was checked on short reference strings. It reproduces the Part 3
+The program was checked on short reference strings. It reproduces a standard
 Belady example: FIFO gives 9 faults with three frames and 10 faults with four
-frames \cite{part3}. Additional checks cover LRU, Optimal, repeated accesses,
+frames \cite{cornell}. Additional checks cover LRU, Optimal, repeated accesses,
 and the learned policy's tie rule. All six automated test methods passed.
 
 \newpage
@@ -195,7 +195,7 @@ Every policy uses exactly the same generated reference strings. The frames are
 not cleared when the pattern changes. This makes the comparison fair and lets
 the experiment show what happens when old pages remain in memory.
 
-The hit ratio is calculated as taught in Part 3 \cite{part3}:
+The hit ratio is calculated from the number of successful accesses \cite{ostep}:
 \begin{center}
 Hit ratio = (Number of hits / Number of references) $\times$ 100\%
 \end{center}
@@ -226,13 +226,13 @@ __AFTER__
 \end{table}
 
 \newpage
-\section{Discussion Using the Lecture Concepts}
+\section{Discussion of Results}
 \subsection{Before the change: locality helps}
 Before the change, pages 0--7 are used repeatedly. LRU and the learned policy both
 keep many of these useful pages in frames and achieve about 91\% hits. FIFO gives
 about 84\% hits because its rule considers arrival order rather than recent use.
-This difference is consistent with the lecture explanation of temporal locality:
-a page used recently is often used again soon \cite{part3}.
+This difference is consistent with temporal locality:
+a page used recently is often used again soon \cite{ostep}.
 
 The learned policy and LRU are almost equal before the change. Their small
 difference does not show a clear advantage for learning. Optimal reaches about
@@ -265,22 +265,22 @@ __PLOTS__
 \end{figure}
 
 In these experiments, more frames generally allow more useful pages to remain
-in memory. The working-set idea in Part 2 explains why this helps \cite{part2}.
+in memory. The working-set idea explains why this helps \cite{osc}.
 The separate FIFO test also reminds us that more frames do not improve every
-possible FIFO reference string: Belady's anomaly is an exception \cite{part3}.
+possible FIFO reference string: Belady's anomaly is an exception \cite{cornell}.
 
 \newpage
 \section{Conclusion and References}
 \subsection{Main findings and limits}
-This experiment connects the class page-replacement algorithms to a changing
+This experiment connects the page-replacement algorithms to a changing
 reference string. The main findings are that locality helps LRU, random accesses
 make past history less useful, and a changing working set requires the policy to
 keep track of currently useful pages. The simple learned policy almost matches
 LRU before the change but performs worse after the change to bursts. For the
 main 16-frame comparison, LRU is the better simple choice after that change.
 
-The lecture slides explain that frequent page faults can slow execution because
-missing pages need to be brought into memory \cite{part2,part3}. This simulation
+Frequent page faults can slow execution because
+missing pages need to be brought into memory \cite{ostep,osc}. This simulation
 counts faults; it does not measure disk delay or effective access time. It also
 does not establish real system thrashing, which involves time spent servicing
 faults. The tested strings are generated examples, so the conclusions apply to
@@ -293,19 +293,10 @@ The numbers come from executed simulations. The student should review and
 understand the work before submission.
 
 \subsection{References}
-The two course slide decks are the main sources for the memory-management
-explanations. The other sources support the classical policies and the small
-learned component.
+The following sources support the memory-management explanations, classical
+replacement policies, and simple learned component.
 
 \begin{thebibliography}{9}\small
-\bibitem{part2} K. H. Irfan, \emph{Memory Management in Operating Systems Part-2:
-Non Contiguous Allocation}, CSE-307, Department of Computer Science and Engineering,
-MIST, Spring 2026. Course slides supplied by the student; especially slides 8--14,
-59--70, and 94.
-\bibitem{part3} K. H. Irfan, \emph{Memory Management Part-3: Page Replacement and
-Page Replacement Algorithms}, CSE-307, Department of Computer Science and
-Engineering, MIST, Spring 2026. Course slides supplied by the student; especially
-slides 2--12 and 16.
 \bibitem{ostep} R. H. Arpaci-Dusseau and A. C. Arpaci-Dusseau,
 \emph{Operating Systems: Three Easy Pieces}, Chapter 22, ``Beyond Physical Memory:
 Policies.'' \url{https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf}.
@@ -325,4 +316,4 @@ machine learned advice,'' arXiv:1802.05399, 2018, revised 2020.
 paper=paper.replace('__BEFORE__','\n'.join(before)).replace('__AFTER__','\n'.join(after))
 paper=paper.replace('__PLOTS__','\n\\hfill\n'.join(plots))
 (ROOT/'paper.tex').write_text(paper,encoding='utf-8')
-print('Updated paper.tex: separate cover, simple explanations, seven references')
+print('Updated paper.tex: logo cover, high-level abstract, five external references')

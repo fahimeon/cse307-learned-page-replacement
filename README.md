@@ -2,7 +2,7 @@
 
 **CSE-307 Operating Systems, Part B, Track 1**
 
-Fahim Azmul Hasan | ID 2024-14014 | Section A | Level 3, Term 1
+Fahim Azmul Hasan | ID 202414014 | Section A | Level 3, Term 1
 
 Submitted to Lecturer Khaled Hasan Irfan, CSE, MIST.
 
@@ -79,8 +79,10 @@ for the full string, rather than a practical online replacement rule.
 
 [Read the revised six-page paper](output/pdf/CSE307_Track1_Term_Paper.pdf).
 It has **one separate cover page and five pages of content and references**.
-The tables have white cells and black borders. Explanations follow the supplied
-Memory Management Part 2 and Part 3 lecture slides. There are seven references;
+The cover includes the official MIST logo. Tables have white cells and black
+borders. The abstract gives a high-level overview without numerical results.
+Explanations focus on paging, locality, working sets, and replacement policies.
+There are five external references;
 the decision tree is explained briefly because Track 1 requires it.
 
 | File | Purpose |
@@ -92,7 +94,8 @@ the decision tree is explained briefly because Track 1 requires it.
 | `results/traces/` | Saved training and experiment reference strings |
 | `results/access_results.csv.gz` | Detailed hit/fault records |
 | `results/tree.txt` | Readable rules learned by the tree |
-| `paper.tex` | Editable standalone LaTeX paper |
+| `paper.tex` | Editable LaTeX paper |
+| `assets/mist-logo.png` | Official MIST logo used on the cover |
 | `build_paper.py` | Regenerate the paper source from the result tables |
 | `build_pdf.py` | Produce the PDF with Python |
 
@@ -110,8 +113,10 @@ the report revision; displayed averages are simply rounded for readability.
 .\.venv\Scripts\python.exe build_pdf.py
 ```
 
-`paper.tex` contains its tables, chart coordinates, and references in one file.
-It can be compiled in a normal LaTeX environment with `pgfplots`. The native
+`paper.tex` contains its tables, chart coordinates, and references. Keep the
+`assets/mist-logo.png` file alongside it in the same folder structure when
+compiling. It can be compiled in a normal LaTeX environment with `pgfplots`.
+The native
 compiler in this environment failed with “Unable to find standard directories
 for platform,” so LaTeX compilation remains unverified. The provided PDF uses
 Python/ReportLab to render the same text, tables, and measured chart. All six PDF
@@ -122,17 +127,16 @@ in the supplied assignment brief and announcement.
 
 ## Sources and AI assistance
 
-The main course sources are Lecturer Khaled Hasan Irfan's **Memory Management in
-Operating Systems Part-2: Non Contiguous Allocation** and **Memory Management
-Part-3: Page Replacement and Page Replacement Algorithms**, CSE-307, MIST,
-Spring 2026. The course PDFs are cited in the paper and are not redistributed
-in this repository.
-
-Additional sources are [OSTEP, Chapter 22](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf),
+Sources are [OSTEP, Chapter 22](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-beyondphys-policy.pdf),
 [Cornell's page replacement lecture](https://www.cs.cornell.edu/courses/cs4410/2015su/lectures/lec15-replacement.html),
 [Operating System Concepts, 10th edition](https://www.os-book.com/OS10/),
 [scikit-learn's decision-tree documentation](https://scikit-learn.org/stable/modules/tree.html),
 and [Competitive caching with machine learned advice](https://arxiv.org/abs/1802.05399).
+
+The cover logo is the original PNG used by the [official MIST website](https://mist.ac.bd/),
+downloaded from `https://mist.ac.bd/assets/30-q2kX7pZF.png`. Its proportions are
+preserved. Logo provenance is documented here rather than included among the
+paper's academic references.
 
 AI assistance was used to generate code, design and execute the experiments,
 analyze results, and draft and revise the paper. The results come from actual
