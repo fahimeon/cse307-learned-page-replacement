@@ -198,7 +198,8 @@ def main():
 
 def plots(summary, windows):
     colors = ['#52738f','#c07838','#36826c','#915990']
-    plt.rcParams.update({'font.size':10,'axes.spines.top':False,'axes.spines.right':False})
+    plt.rcParams.update({'font.size':10,'axes.spines.top':True,'axes.spines.right':True,
+                         'axes.edgecolor':'black','axes.facecolor':'white'})
     fig, axs = plt.subplots(1,2,figsize=(10,3.6),sharey=True)
     for ax,scenario in zip(axs,['random','bursty']):
         for offset,(policy,color) in enumerate(zip(POLICIES,colors)):
@@ -220,7 +221,7 @@ def plots(summary, windows):
             ax.plot(positions,values,label=policy,color=color)
         ax.axvline(HALF,color='black',ls='--',lw=1)
         ax.set_title('Locality to '+scenario); ax.set_xlabel('Access index (250-access windows)')
-    axs[0].set_ylabel('Mean hit ratio (%)'); axs[1].legend(fontsize=8)
+    axs[0].set_ylabel('Mean hit ratio (%)'); axs[1].legend(fontsize=8,edgecolor='black',facecolor='white')
     fig.tight_layout(); fig.savefig(OUT/'timeline.png',dpi=200); plt.close(fig)
     fig,axs = plt.subplots(1,2,figsize=(10,3.6),sharey=True)
     for ax,scenario in zip(axs,['random','bursty']):
@@ -230,7 +231,8 @@ def plots(summary, windows):
                       for k in CAPACITIES]
             ax.plot(CAPACITIES,values,'o-',color=color,label=policy)
         ax.set_title('After shift: '+scenario); ax.set_xlabel('Page frames'); ax.set_xticks(CAPACITIES)
-    axs[0].set_ylabel('Mean hit ratio (%)'); axs[1].legend(fontsize=8)
+    axs[0].set_ylim(0,100)
+    axs[0].set_ylabel('Mean hit ratio (%)'); axs[1].legend(fontsize=8,edgecolor='black',facecolor='white')
     fig.tight_layout(); fig.savefig(OUT/'capacity.png',dpi=200); plt.close(fig)
 
 
