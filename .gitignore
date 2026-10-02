@@ -4,3 +4,5 @@ __pycache__/
 *.log
 *.out
 tmp/
+build_pdf.py
+build_paper.py

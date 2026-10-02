@@ -98,17 +98,9 @@ comparison, and hit ratios along the reference string.
 | `results/tree.txt` | Readable rules learned by the tree |
 | `paper.tex` | Editable LaTeX paper |
 | `assets/mist-logo.png` | MIST logo used on the cover |
-| `build_paper.py` | Regenerate the paper source from the result tables |
-| `build_pdf.py` | Produce the PDF with Python |
 
 
-## Regenerate the report
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements-pdf.txt
-.\.venv\Scripts\python.exe build_paper.py
-.\.venv\Scripts\python.exe build_pdf.py
-```
+## Edit the LaTeX report
 
 `paper.tex` contains its tables, chart coordinates, and references. Keep the
 `assets/mist-logo.png`, `results/phase_hits.png`, and `results/timeline.png` files
