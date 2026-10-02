@@ -1,0 +1,91 @@
+|--- frequency64 <= 2.50
+|   |--- recency <= 8.50
+|   |   |--- frequency_total <= 2.50
+|   |   |   |--- frequency64 <= 1.50
+|   |   |   |   |--- frequency_total <= 1.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- frequency_total >  1.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- frequency64 >  1.50
+|   |   |   |   |--- recency <= 4.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- recency >  4.50
+|   |   |   |   |   |--- class: 1
+|   |   |--- frequency_total >  2.50
+|   |   |   |--- frequency_total <= 6.50
+|   |   |   |   |--- frequency64 <= 1.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- frequency64 >  1.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- frequency_total >  6.50
+|   |   |   |   |--- frequency_total <= 7.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- frequency_total >  7.50
+|   |   |   |   |   |--- class: 1
+|   |--- recency >  8.50
+|   |   |--- frequency_total <= 2.50
+|   |   |   |--- frequency_total <= 1.50
+|   |   |   |   |--- recency <= 90.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- recency >  90.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |--- frequency_total >  1.50
+|   |   |   |   |--- recency <= 170.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- recency >  170.50
+|   |   |   |   |   |--- class: 0
+|   |   |--- frequency_total >  2.50
+|   |   |   |--- frequency_total <= 4.50
+|   |   |   |   |--- recency <= 38.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- recency >  38.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- frequency_total >  4.50
+|   |   |   |   |--- frequency_total <= 6.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- frequency_total >  6.50
+|   |   |   |   |   |--- class: 1
+|--- frequency64 >  2.50
+|   |--- recency <= 1.50
+|   |   |--- frequency64 <= 7.50
+|   |   |   |--- frequency64 <= 3.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- frequency64 >  3.50
+|   |   |   |   |--- frequency_total <= 332.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- frequency_total >  332.50
+|   |   |   |   |   |--- class: 1
+|   |   |--- frequency64 >  7.50
+|   |   |   |--- frequency_total <= 335.50
+|   |   |   |   |--- frequency_total <= 9.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- frequency_total >  9.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |--- frequency_total >  335.50
+|   |   |   |   |--- frequency_total <= 336.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- frequency_total >  336.50
+|   |   |   |   |   |--- class: 1
+|   |--- recency >  1.50
+|   |   |--- frequency_total <= 334.50
+|   |   |   |--- frequency64 <= 3.50
+|   |   |   |   |--- frequency_total <= 3.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- frequency_total >  3.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- frequency64 >  3.50
+|   |   |   |   |--- recency <= 2.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- recency >  2.50
+|   |   |   |   |   |--- class: 0
+|   |   |--- frequency_total >  334.50
+|   |   |   |--- frequency_total <= 336.50
+|   |   |   |   |--- recency <= 7.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- recency >  7.50
+|   |   |   |   |   |--- class: 0
+|   |   |   |--- frequency_total >  336.50
+|   |   |   |   |--- recency <= 6.50
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- recency >  6.50
+|   |   |   |   |   |--- class: 0

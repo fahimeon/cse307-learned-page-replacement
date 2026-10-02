@@ -1,0 +1,69 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.3.5",
+  "sklearn": "1.9.1",
+  "matplotlib": "3.11.2",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "training_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "test_seeds": [
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109
+  ],
+  "half": 3000,
+  "pages": 64,
+  "capacities": [
+    8,
+    12,
+    16,
+    24
+  ],
+  "training_rows": 189312,
+  "positive_rows": 25183,
+  "tree_depth": 5,
+  "tree_leaves": 31,
+  "feature_importance": {
+    "recency": 0.10863914058498231,
+    "frequency64": 0.8391612246595993,
+    "frequency_total": 0.052199634755418355
+  },
+  "evaluation_seconds": 13.926450800000566,
+  "trace_sha256": {
+    "random_100.csv": "52ab008d239c5cb9fca32752975630fad62faab5a4957c39dac7e54bf5200a0c",
+    "random_101.csv": "04804f0f7c9f4f13a42d74f7a1e63f2efa195c355434e5474688bf49fe0936a9",
+    "random_102.csv": "9a7cc5c2a821c4133667d521a227721a7a9da3b727dc18b16dc75aaef57a65fa",
+    "random_103.csv": "ec0494e5652db5b4bdd14a49d7f0c93b4661db36307d55d5f8fd64f64e2adab7",
+    "random_104.csv": "0c20e4754431a2a897af5fc00ca9bc3c8364f1e83099ceba4e7a1d2c4d6020bd",
+    "random_105.csv": "a9199e431fa7532a7dc3a1e085867b3ad76f6b6757c4f4653a51353f99c02d72",
+    "random_106.csv": "456c1f6bae80807b353f76970da5b5103ae2d2f74cd5d8afa697ae87048cf76d",
+    "random_107.csv": "cb239664d620c44ec15cb9d9ef614bdddebd3d63074649afd50d9deb9323fd76",
+    "random_108.csv": "e34d9ac8779f4fe26fb34cbe79bfbf31bbbfd5453ba1d13f0cb11c411131feba",
+    "random_109.csv": "ff796e52cc66a406806dfcdfbcde70d20dfc84557f14c0c3ca6ad555832263b9",
+    "bursty_100.csv": "34b16733ab12ffa348ad609d028638dcd879414cb916bd5508e369059ca08eaa",
+    "bursty_101.csv": "b283a5c90fc24724b25101b53b3bda51f2bc4c6ab433625c93ddb8062a1abbd0",
+    "bursty_102.csv": "bf7831694ff2a6a5004f90252fa9dad6b138f8a72b03a7dccdd6bd67266bc5a0",
+    "bursty_103.csv": "ed549d884431a871b85170900236abac89744711a4e4944b2bdf49cc1055fe6a",
+    "bursty_104.csv": "691e5590c4f1915bba78df7d8b5935e92f56c9c4a8aff36f35ef68973094df89",
+    "bursty_105.csv": "ce500f22ff2f7df03654ef2d68038b3caca63fc2d5044fcca9dec6fbb80dab5f",
+    "bursty_106.csv": "69d0568d6f0e84c5c446efa0d972c69a196c59b8b75e297d03fcf9fb2bdd45a3",
+    "bursty_107.csv": "bde94a60a7a432b37b2bea3b02ef1b05ede2b1bc6dbfd183b8e943b0248790f4",
+    "bursty_108.csv": "ff3f160b43818010f83e085e9122835348b8f4242b6fe4cc703e9c78fbaaf345",
+    "bursty_109.csv": "20530bd29fc351ba332eb6d232d0414017816540a87c5ab3aab8eec340114655"
+  }
+}

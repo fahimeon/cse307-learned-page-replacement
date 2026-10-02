@@ -1,0 +1,4 @@
+All 20 evaluation trace hashes match.
+All 1,920,000 outcomes agree with 640 saved phase-level records.
+Every hit ratio equals 1 - faults / 3000.
+OPT total faults are no greater than any other policy in all 80 trace/capacity pairs.

@@ -1,0 +1,11 @@
+test_belady_example (test_algorithms.ReplacementTests.test_belady_example) ... ok
+test_learned_prefix_is_independent_of_future (test_algorithms.ReplacementTests.test_learned_prefix_is_independent_of_future) ... ok
+test_learned_ties_use_lru (test_algorithms.ReplacementTests.test_learned_ties_use_lru) ... ok
+test_lru_reference (test_algorithms.ReplacementTests.test_lru_reference) ... ok
+test_resident_and_empty (test_algorithms.ReplacementTests.test_resident_and_empty) ... ok
+test_small_exhaustive_oracle (test_algorithms.ReplacementTests.test_small_exhaustive_oracle) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.063s
+
+OK
