@@ -3,7 +3,9 @@
 *.md text eol=lf
 *.json text eol=lf
 *.txt text eol=lf
-*.csv -text
+*.csv -text whitespace=cr-at-eol
+.gitattributes text eol=lf
+.gitignore text eol=lf
 *.pdf binary
 *.png binary
 *.gz binary
