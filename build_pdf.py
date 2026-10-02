@@ -22,6 +22,7 @@ styles = {
     'h2': ParagraphStyle('h2',fontName='Times-Bold',fontSize=11,leading=14,spaceBefore=4,spaceAfter=5),
     'title': ParagraphStyle('title',fontName='Times-Bold',fontSize=21,leading=27,alignment=TA_CENTER,spaceAfter=12),
     'subtitle': ParagraphStyle('subtitle',fontName='Times-Roman',fontSize=12,leading=15,alignment=TA_CENTER,spaceAfter=8),
+    'institute': ParagraphStyle('institute',fontName='Times-Bold',fontSize=16,leading=20,alignment=TA_CENTER,spaceAfter=12),
     'center': ParagraphStyle('center',fontName='Times-Roman',fontSize=10.5,leading=13,alignment=TA_CENTER,spaceAfter=3),
     'small': ParagraphStyle('small',fontName='Times-Roman',fontSize=9.5,leading=12,spaceAfter=3),
     'ref': ParagraphStyle('ref',fontName='Times-Roman',fontSize=9.5,leading=12,spaceAfter=7),
@@ -90,7 +91,7 @@ for page_index,page in enumerate(pages):
         logo.drawWidth=84
         logo.drawHeight=84*logo_ratio
         story.extend([Spacer(1,15),logo,
-                      Spacer(1,10),p('MIST','title'),
+                      Spacer(1,10),p('Military Institute of Science and Technology','institute'),
                       p('Department of Computer Science and Engineering','center'),Spacer(1,42),
                       p('CSE-307: Operating Systems','subtitle'),
                       p('TERM PAPER - PART B, TRACK 1','center'),Spacer(1,40),
@@ -152,7 +153,6 @@ def footer(canvas,doc):
         return
     canvas.setFont('Times-Roman',8)
     canvas.setFillColor(colors.HexColor('#555555'))
-    canvas.drawString(48,25,'CSE-307 | Page Replacement | Fahim Azmul Hasan')
     canvas.drawRightString(A4[0]-48,25,str(doc.page-1))
 
 doc=SimpleDocTemplate(str(OUTPUT/'CSE307_Track1_Term_Paper.pdf'),pagesize=A4,
