@@ -2,6 +2,8 @@
 
 **CSE-307 Operating Systems, Part B, Track 1**
 
+Public repository: [cse307-learned-page-replacement](https://github.com/fahimeon/cse307-learned-page-replacement).
+
 Fahim Azmul Hasan | ID 202414014 | Section A | Level 3, Term 1
 
 Submitted to Lecturer Khaled Hasan Irfan, CSE, MIST.
